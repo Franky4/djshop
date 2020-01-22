@@ -65,10 +65,10 @@ WSGI_APPLICATION = 'djshop.wsgi.application'
 DATABASES = {
     'default': {
     'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    'NAME': 'djshop_db',
+    'NAME': 'djshop-db',
     'USER' : 'djuser',
-    'PASSWORD' : 'password',
-    'HOST' : '127.0.0.1',
+    'PASSWORD' : 'postgres',
+    'HOST' : '10.10.28.235',
     'PORT' : '5432',
     }
     # 'default': {
