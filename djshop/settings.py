@@ -25,7 +25,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'mptt',
+    'mptt',
+    'photologue',
+    'sortedm2m',
 ]
 
 MIDDLEWARE = [
