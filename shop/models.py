@@ -31,6 +31,7 @@ class Product(models.Model):
     category = models.ForeignKey(Category, verbose_name='Категория', on_delete=models.CASCADE)
     title = models.CharField('Название', max_length=150)
     description = models.TextField('Описание')
+    full_description = models.TextField('Полное описание')
     price = models.DecimalField('Цена', default=0)
     slug = models.SlugField(max_length=150)
     availability = models.BooleanField('Наличие', default=True)
@@ -56,7 +57,8 @@ class Product(models.Model):
 
 
 class Cart(models.Model):
-    '''Корзина'''
+    """Корзина"""
+    session = ''
     user = models.ForeignKey(User, verbose_name='Покупатель', on_delete=models.CASCADE)
     accepted = models.BooleanField(verbose_name='Принято к заказу', default=False)
 
@@ -69,7 +71,7 @@ class Cart(models.Model):
 
 
 class CartItem(models.Model):
-    '''Товары в корзине'''
+    """Товары в корзине"""
     cart = models.ForeignKey(Cart, verbose_name='Корзина', on_delete=models.CASCADE)
     product = models.ForeignKey(Product, verbose_name='Товар', on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField('Количество', default=1)
@@ -88,7 +90,7 @@ class CartItem(models.Model):
 
 
 class Order(models.Model):
-    '''Заказы'''
+    """Заказы"""
     cart = models.ForeignKey(Cart, verbose_name='Корзина', on_delete=models.CASCADE)
     accepted = models.BooleanField(verbose_name='Заказ выполнен', default=False)
     date = models.DateTimeField('Дата', default=timezone.now())
@@ -103,6 +105,6 @@ class Order(models.Model):
 
 @receiver(post_save, sender=User)
 def create_user_cart(sender, instance, created, **kwargs):
-    '''Create user cart'''
+    """Create user cart"""
     if created:
         Cart.objects.create(user=instance)
