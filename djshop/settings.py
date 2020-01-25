@@ -19,6 +19,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 SITE_ID = 1
 INSTALLED_APPS = [
+    # 'shop.apps.ShopConfig',
     'django.contrib.admin',
     'django.contrib.sites',
     'django.contrib.auth',
@@ -30,6 +31,7 @@ INSTALLED_APPS = [
     'mptt',
     'photologue',
     'sortedm2m',
+
 ]
 
 MIDDLEWARE = [
