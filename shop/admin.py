@@ -5,9 +5,8 @@ from .models import Category, Product, Cart, CartItem, Order
 
 @admin.register(Category)
 class Category(MPTTModelAdmin):
-    """City"""
-    list_display = ('name', 'id')
-    # list_display_links = ('name',)
+    """Category"""
+    list_display = ('name', 'parent')
     mptt_level_indent = 20
     prepopulated_fields = {'slug': ('name',)}
 
@@ -15,10 +14,10 @@ class Category(MPTTModelAdmin):
 @admin.register(Product)
 class Product(MPTTModelAdmin):
     """Company"""
-    list_display = ('name', 'id')
+    list_display = ('title', 'id')
     # list_display_links = ('name',)
     mptt_level_indent = 20
-    prepopulated_fields = {'slug': ('name',)}
+    prepopulated_fields = {'slug': ('title',)}
 
 
 @admin.register(Cart)
@@ -27,23 +26,27 @@ class Cart(admin.ModelAdmin):
     list_display = ('id',
                     'user',
                     )
-    list_display_links = ('id', 'name')
-    prepopulated_fields = {'slug': ('id', 'user',)}
+    list_display_links = ('id', 'user')
+    # prepopulated_fields = {'slug': ('id', 'user',)}
 
 @admin.register(CartItem)
 class CartItem(MPTTModelAdmin):
     """Type KKM"""
     list_display = ('cart', 'product', 'quantity')
     mptt_level_indent = 20
-    prepopulated_fields = {'slug': ('cart', 'product',)}
+    # prepopulated_fields = {'slug': ('cart', 'product',)}
 
 
 @admin.register(Order)
-class Order(MPTTModelAdmin):
-    """Device KKM"""
+class Order(admin.ModelAdmin):
+    """Order"""
     list_display = ('cart', 'accepted', 'date', )
+    list_filter = ('accepted',)
+    search_fields = ('date',)
+    # prepopulated_fields = {'slug': ('cart',)}
+    ordering = ['date']
     mptt_level_indent = 20
-    prepopulated_fields = {'slug': ('cart', 'date',)}
+    # prepopulated_fields = {'slug': ('cart', 'date',)}
 
-admin.site.register(Category, Category)
+# admin.site.register(Category, Category)
 

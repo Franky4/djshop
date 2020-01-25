@@ -10,7 +10,7 @@ from mptt.models import MPTTModel, TreeForeignKey
 
 class Category(MPTTModel):
     """Категория товара"""
-    name = models.CharField(unique=True)
+    name = models.CharField(unique=True, max_length=100)
     parent = TreeForeignKey(
         'self',
         on_delete=models.CASCADE,
@@ -32,7 +32,7 @@ class Product(models.Model):
     title = models.CharField('Название', max_length=150)
     description = models.TextField('Описание')
     full_description = models.TextField('Полное описание')
-    price = models.DecimalField('Цена', default=0)
+    price = models.IntegerField('Цена', default=0)
     slug = models.SlugField(max_length=150)
     availability = models.BooleanField('Наличие', default=True)
     quantity = models.IntegerField('Количество', default=0)
@@ -93,11 +93,14 @@ class Order(models.Model):
     """Заказы"""
     cart = models.ForeignKey(Cart, verbose_name='Корзина', on_delete=models.CASCADE)
     accepted = models.BooleanField(verbose_name='Заказ выполнен', default=False)
-    date = models.DateTimeField('Дата', default=timezone.now())
+    date = models.DateTimeField('Дата', default=timezone.now)
 
     class Meta:
         verbose_name = 'Заказ'
         verbose_name_plural = 'Заказы'
+
+    class MPTTMeta:
+        order_insertion_by = ['date']
 
     def __str__(self):
         return '{}'.format(self.cart)
