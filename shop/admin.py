@@ -12,11 +12,11 @@ class Category(MPTTModelAdmin):
 
 
 @admin.register(Product)
-class Product(MPTTModelAdmin):
+class Product(admin.ModelAdmin):
     """Company"""
     list_display = ('title', 'id')
     # list_display_links = ('name',)
-    mptt_level_indent = 20
+    # mptt_level_indent = 20
     prepopulated_fields = {'slug': ('title',)}
 
 

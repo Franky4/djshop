@@ -19,7 +19,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 SITE_ID = 1
 INSTALLED_APPS = [
-    # 'shop.apps.ShopConfig',
+    'shop.apps.ShopConfig',
     'django.contrib.admin',
     'django.contrib.sites',
     'django.contrib.auth',
@@ -31,7 +31,7 @@ INSTALLED_APPS = [
     'mptt',
     'photologue',
     'sortedm2m',
-    'shop',
+    # 'shop',
 
 ]
 
@@ -59,6 +59,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'shop.context_processors.list_categoryes',
             ],
         },
     },
@@ -123,4 +124,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static")
+    # "/Users/ak/PycharmProjects/djshop/static",
+]
