@@ -9,7 +9,7 @@ django-js-asset==1.1.0
 django-mptt==0.11.0
 django-photologue==3.11
 django-sortedm2m==3.0.0
-djangorestframework==3.11.0
+djangorestframework==3.11.2
 djangorestframework-recursive==0.1.2
 ExifRead==2.1.2
 idna==2.8
